@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JFBeverage.h"
 
 @interface JFBeverageViewController : UIViewController
+
+@property (nonatomic, strong) JFBeverage *beverage;
 
 @end

@@ -20,6 +20,7 @@
 		6ED422BC1AC9D153007E16FB /* beverages.json in Resources */ = {isa = PBXBuildFile; fileRef = 6ED422BB1AC9D153007E16FB /* beverages.json */; };
 		6ED422BF1AC9EBF5007E16FB /* JFBeverageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED422BE1AC9EBF5007E16FB /* JFBeverageViewController.m */; };
 		6ED422C21AC9EDA6007E16FB /* JFMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED422C11AC9EDA6007E16FB /* JFMenuViewController.m */; };
+		6ED422C51AC9F0A0007E16FB /* JFMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED422C41AC9F0A0007E16FB /* JFMenuTableViewCell.m */; };
 		849B718FF958F2599F3D81E9 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2E726F6F35BFE843513972 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,8 @@
 		6ED422BE1AC9EBF5007E16FB /* JFBeverageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFBeverageViewController.m; sourceTree = "<group>"; };
 		6ED422C01AC9EDA6007E16FB /* JFMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFMenuViewController.h; sourceTree = "<group>"; };
 		6ED422C11AC9EDA6007E16FB /* JFMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFMenuViewController.m; sourceTree = "<group>"; };
+		6ED422C31AC9F0A0007E16FB /* JFMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFMenuTableViewCell.h; sourceTree = "<group>"; };
+		6ED422C41AC9F0A0007E16FB /* JFMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFMenuTableViewCell.m; sourceTree = "<group>"; };
 		775BC32BCC14F8D9AAC17975 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CD2E726F6F35BFE843513972 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADD669195E58C44F9C4EC29 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 				6E73EA9B1AC8DB6500C1B819 /* JFBeverages.m */,
 				6ED422B81AC927D9007E16FB /* JFCheckoutCart.h */,
 				6ED422B91AC927D9007E16FB /* JFCheckoutCart.m */,
+				6ED422C31AC9F0A0007E16FB /* JFMenuTableViewCell.h */,
+				6ED422C41AC9F0A0007E16FB /* JFMenuTableViewCell.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -342,6 +347,7 @@
 				6E73EA991AC8D91800C1B819 /* JFBeverage.m in Sources */,
 				6ED422BF1AC9EBF5007E16FB /* JFBeverageViewController.m in Sources */,
 				6ED422BA1AC927D9007E16FB /* JFCheckoutCart.m in Sources */,
+				6ED422C51AC9F0A0007E16FB /* JFMenuTableViewCell.m in Sources */,
 				6E73EA9C1AC8DB6500C1B819 /* JFBeverages.m in Sources */,
 				6E73EA761AC8D7D000C1B819 /* AppDelegate.m in Sources */,
 				6ED422C21AC9EDA6007E16FB /* JFMenuViewController.m in Sources */,
