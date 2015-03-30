@@ -16,6 +16,10 @@
 		6E73EA991AC8D91800C1B819 /* JFBeverage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E73EA981AC8D91800C1B819 /* JFBeverage.m */; };
 		6E73EA9C1AC8DB6500C1B819 /* JFBeverages.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E73EA9B1AC8DB6500C1B819 /* JFBeverages.m */; };
 		6E73EAA01AC8E89700C1B819 /* JFFeturedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E73EA9F1AC8E89700C1B819 /* JFFeturedViewController.m */; };
+		6ED422BA1AC927D9007E16FB /* JFCheckoutCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED422B91AC927D9007E16FB /* JFCheckoutCart.m */; };
+		6ED422BC1AC9D153007E16FB /* beverages.json in Resources */ = {isa = PBXBuildFile; fileRef = 6ED422BB1AC9D153007E16FB /* beverages.json */; };
+		6ED422BF1AC9EBF5007E16FB /* JFBeverageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED422BE1AC9EBF5007E16FB /* JFBeverageViewController.m */; };
+		6ED422C21AC9EDA6007E16FB /* JFMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED422C11AC9EDA6007E16FB /* JFMenuViewController.m */; };
 		849B718FF958F2599F3D81E9 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2E726F6F35BFE843513972 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -47,6 +51,13 @@
 		6E73EA9B1AC8DB6500C1B819 /* JFBeverages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFBeverages.m; sourceTree = "<group>"; };
 		6E73EA9E1AC8E89700C1B819 /* JFFeturedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFFeturedViewController.h; sourceTree = "<group>"; };
 		6E73EA9F1AC8E89700C1B819 /* JFFeturedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFFeturedViewController.m; sourceTree = "<group>"; };
+		6ED422B81AC927D9007E16FB /* JFCheckoutCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCheckoutCart.h; sourceTree = "<group>"; };
+		6ED422B91AC927D9007E16FB /* JFCheckoutCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCheckoutCart.m; sourceTree = "<group>"; };
+		6ED422BB1AC9D153007E16FB /* beverages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = beverages.json; sourceTree = "<group>"; };
+		6ED422BD1AC9EBF5007E16FB /* JFBeverageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFBeverageViewController.h; sourceTree = "<group>"; };
+		6ED422BE1AC9EBF5007E16FB /* JFBeverageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFBeverageViewController.m; sourceTree = "<group>"; };
+		6ED422C01AC9EDA6007E16FB /* JFMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFMenuViewController.h; sourceTree = "<group>"; };
+		6ED422C11AC9EDA6007E16FB /* JFMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFMenuViewController.m; sourceTree = "<group>"; };
 		775BC32BCC14F8D9AAC17975 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CD2E726F6F35BFE843513972 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADD669195E58C44F9C4EC29 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +120,7 @@
 		6E73EA701AC8D7D000C1B819 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6ED422BB1AC9D153007E16FB /* beverages.json */,
 				6E73EA711AC8D7D000C1B819 /* Info.plist */,
 				6E73EA721AC8D7D000C1B819 /* main.m */,
 			);
@@ -139,6 +151,8 @@
 				6E73EA981AC8D91800C1B819 /* JFBeverage.m */,
 				6E73EA9A1AC8DB6500C1B819 /* JFBeverages.h */,
 				6E73EA9B1AC8DB6500C1B819 /* JFBeverages.m */,
+				6ED422B81AC927D9007E16FB /* JFCheckoutCart.h */,
+				6ED422B91AC927D9007E16FB /* JFCheckoutCart.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -148,6 +162,10 @@
 			children = (
 				6E73EA9E1AC8E89700C1B819 /* JFFeturedViewController.h */,
 				6E73EA9F1AC8E89700C1B819 /* JFFeturedViewController.m */,
+				6ED422C01AC9EDA6007E16FB /* JFMenuViewController.h */,
+				6ED422C11AC9EDA6007E16FB /* JFMenuViewController.m */,
+				6ED422BD1AC9EBF5007E16FB /* JFBeverageViewController.h */,
+				6ED422BE1AC9EBF5007E16FB /* JFBeverageViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -254,6 +272,7 @@
 			files = (
 				6E73EA7C1AC8D7D000C1B819 /* Main.storyboard in Resources */,
 				6E73EA811AC8D7D100C1B819 /* LaunchScreen.xib in Resources */,
+				6ED422BC1AC9D153007E16FB /* beverages.json in Resources */,
 				6E73EA7E1AC8D7D000C1B819 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,8 +340,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E73EA991AC8D91800C1B819 /* JFBeverage.m in Sources */,
+				6ED422BF1AC9EBF5007E16FB /* JFBeverageViewController.m in Sources */,
+				6ED422BA1AC927D9007E16FB /* JFCheckoutCart.m in Sources */,
 				6E73EA9C1AC8DB6500C1B819 /* JFBeverages.m in Sources */,
 				6E73EA761AC8D7D000C1B819 /* AppDelegate.m in Sources */,
+				6ED422C21AC9EDA6007E16FB /* JFMenuViewController.m in Sources */,
 				6E73EA731AC8D7D000C1B819 /* main.m in Sources */,
 				6E73EAA01AC8E89700C1B819 /* JFFeturedViewController.m in Sources */,
 			);

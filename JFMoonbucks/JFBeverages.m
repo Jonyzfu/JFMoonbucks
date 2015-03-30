@@ -14,16 +14,16 @@
 + (JFBeverages *)sharedInstance {
     static JFBeverages *_sharedBeverages;
     
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
+     static dispatch_once_t once;
+     dispatch_once(&once, ^{
         _sharedBeverages = [[JFBeverages alloc] init];
-    });
-    
+         
+     });
     return _sharedBeverages;
 }
 
 - (id)init {
-    if (self = [super init]) {
+    if (self == [super init]) {
         _allBeverages = [self loadBeveragesFromJSON];
     }
     return self;
@@ -43,7 +43,6 @@
         beverage.name = beverDictionary[@"name"];
         beverage.category = beverDictionary[@"category"];
         beverage.photoURL = beverDictionary[@"photoURL"];
-        beverage.description = beverDictionary[@"description"];
         beverage.rating = beverDictionary[@"rating"];
         beverage.price = beverDictionary[@"price"];
         [beverArray addObject:beverage];

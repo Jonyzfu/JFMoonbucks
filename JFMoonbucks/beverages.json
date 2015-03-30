@@ -1,0 +1,53 @@
+[
+
+ {
+ "beverID" : 12252011,
+ "name" : "Caffè Latte",
+ "category" : "Espresso Beverages",
+ "photoURL" : "http://globalassets.starbucks.com/assets/20229527c1c240439ddbc81bf821d95e.jpg",
+ "description" : "This is the original coffeehouse classic. And like most classics, part of its appeal comes from its simplicity. A caffè latte is simply a shot or two of bold, tasty espresso with fresh, sweet steamed milk over it. Some prefer to add syrup or extra espresso to the recipe. Some maintain that it is entirely perfect as is.",
+ "rating" : 5,
+ "price" : 2.75
+ },
+
+ {
+ "beverID" : 12252012,
+ "name" : "Caffè Americano",
+ "category" : "Espresso Beverages",
+ "photoURL" : "http://globalassets.starbucks.com/assets/69dc4401f64d4419a8d78ca9b5200271.jpg",
+ "description" : "In Europe, coffee is essentially espresso – which, in America, isn’t very much coffee. To create a caffè americano – a coffee that satisfies the American preference for more sips in every cup – Europeans simply add hot water to their espresso. While the americano is similar in strength and taste to American-style brewed coffee, there are subtle differences achieved by pulling a fresh shot of espresso for the beverage base. The best way to discover these nuances, of course, is to try a cup yourself.",
+ "rating" : 5,
+ "price" : 3.25
+ },
+
+ {
+ "beverID" : 12252013,
+ "name" : "Caffè Vanilla Coffee",
+ "category" : "Frappuccino® Blended Beverages",
+ "photoURL" : "http://globalassets.starbucks.com/assets/dc0633c454314a518b031d1e4a9f226c.jpg",
+ "description" : "The flavor of vanilla lends a wonderfully creamy taste to anything it teams up with. And coffee is certainly no exception. Combined in this refreshing beverage, they only bring out the best in each other. The spicy fragrance of vanilla enhances the full-bodied richness of dark-roasted coffee. You’ll sigh a satisfied ‘ahh’ after every succulent slurp.",
+ "rating" : 5,
+ "price" : 3.75
+ },
+
+ {
+ "beverID" : 12252014,
+ "name" : "Hot Chocolate",
+ "category" : "Chocolate Beverages",
+ "photoURL" : "http://globalassets.starbucks.com/assets/f6d9e4e674cd4859b6f66a3a34b1e973.jpg",
+ "description" : "Do you remember your first hot chocolate? Sweet, creamy comfort in a cup. You instantly pegged it the best drink on earth. Chances are you’ll feel the same about our version of this classic beverage. Made with steamed milk, vanilla and mocha-flavored syrups, and topped with a generous swirl of sweetened whipped cream, we bet it tastes even better than the one you remember.",
+ "rating" : 5,
+ "price" : 2.75
+ }, 
+
+ {
+ "beverID" : 12252015,
+ "name" : "Peppermint Hot Chocolate",
+ "category" : "Chocolate Beverages",
+ "photoURL" : "http://globalassets.starbucks.com/assets/fee62313f5e440a68bc4417a0928f29f.jpg",
+ "description" : "There’s nothing like a mug of hot chocolate to warm away that winter chill. This drink adds a little something cool into the mix. In this handcrafted beverage, rich hot chocolate meets a wintry blast of peppermint in a well-balanced pairing of hot and cold – proof that opposites do attract.",
+ "rating" : 5,
+ "price" : 3.65
+ }
+
+]

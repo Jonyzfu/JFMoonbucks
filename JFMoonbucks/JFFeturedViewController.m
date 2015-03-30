@@ -9,7 +9,8 @@
 #import "JFFeturedViewController.h"
 #import "JFBeverage.h"
 #import "JFBeverages.h"
-#import "AFNetworking.h"
+#import "UIImageView+AFNetworking.h"
+#import "JFCheckoutCart.h"
 
 
 
@@ -19,7 +20,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *beverNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *beverCategoryLabel;
 @property (strong, nonatomic) IBOutlet UILabel *beverPriceLabel;
-@property (strong, nonatomic) IBOutlet UITextView *beverDescriptionTextView;
 @property (strong, nonatomic) IBOutlet UIButton *addToCartButton;
 
 - (IBAction)addToCartButtonTapped:(id)sender;
@@ -28,10 +28,19 @@
 
 @implementation JFFeturedViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.beverage = [JFBeverages sharedInstance].allBeverages[0];
+    JFBeverages *beverages = [JFBeverages sharedInstance];
+    self.beverage = beverages.allBeverages[0];
     [self populateData];
 }
 
@@ -40,16 +49,31 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    JFCheckoutCart *checkoutCart = [JFCheckoutCart sharedInstance];
+    self.addToCartButton.selected = [checkoutCart containsBeverage:self.beverage] ? YES : NO;
+}
+
 #pragma mark - Data
 
 - (void)populateData {
     NSURL *imageURL = [NSURL URLWithString:self.beverage.photoURL];
     [self.beverImageView setImageWithURL: imageURL placeholderImage:nil];
+    self.beverNameLabel.text = self.beverage.name;
+    self.beverCategoryLabel.text = self.beverage.category;
+    self.beverPriceLabel.text = [NSString stringWithFormat:@"Price: $%@", self.beverage.price];
     
 }
 
 - (IBAction)addToCartButtonTapped:(id)sender {
-    
+    JFCheckoutCart *checkoutCart = [JFCheckoutCart sharedInstance];
+    if (!self.addToCartButton.selected) {
+        [checkoutCart addBeverage:self.beverage];
+        self.addToCartButton.selected = YES;
+    } else {
+        [checkoutCart removeBeverage:self.beverage];
+        self.addToCartButton.selected = NO;
+    }
 }
 
 /*
@@ -62,6 +86,5 @@
 }
 */
 
-- (IBAction)addToCartButtonTapped:(id)sender {
-}
+
 @end

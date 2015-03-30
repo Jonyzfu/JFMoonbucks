@@ -8,6 +8,7 @@
 
 #import "JFBeverage.h"
 
+
 @implementation JFBeverage
 
 @end

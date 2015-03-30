@@ -16,7 +16,6 @@
 @property (nonatomic, strong) NSString *photoURL;
 
 @property (nonatomic, strong) NSNumber *price;
-@property (nonatomic, strong) NSString *description;
 @property (nonatomic, strong) NSNumber *rating;    // out of 5
 
 @end
