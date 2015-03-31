@@ -153,6 +153,16 @@
     return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView
+estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 52;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 52;
+}
+
 
 #pragma mark - UITableViewDelegate methods
 
@@ -203,7 +213,7 @@
         self.selectedYear = @([yearString integerValue]); // Default to current year
     }
     
-    self.expirationDateTextField.text = [NSString stringWithFormat:@"%@/%@", self.selectedMonth, self.selectedYear];
+    self.expirationDateTextField.text = [NSString stringWithFormat:@"%li%li / %@", [self.selectedMonth integerValue]/10, [self.selectedMonth integerValue]%10, self.selectedYear];
     self.expirationDateTextField.textColor = [UIColor blackColor];
 }
 
