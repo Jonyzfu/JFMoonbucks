@@ -14,8 +14,9 @@
 #import "JFPaymentDateCell.h"
 
 #import <AFNetworking/AFNetworking.h>
+#import "Stripe.h"
 
-#define STRIPE_TEST_PUBLIC_KEY
+#define STRIPE_TEST_PUBLIC_KEY @"pk_test_iVml2iTuTnAI7sPKjnkmCbU4"
 #define STRIPE_TEST_POST_URL
 
 @interface JFPaymentViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
@@ -36,6 +37,9 @@
 @property (strong, nonatomic) UIPickerView *expirationDatePicker;
 
 @property (strong, nonatomic) AFJSONRequestSerializer *httpSerializer;
+
+@property (strong, nonatomic) STPCard *stripeCard;
+- (IBAction)completeButtonTapped:(id)sender;
 
 @end
 
@@ -66,15 +70,60 @@
 #pragma mark - Stripe
 
 - (IBAction)completeButtonTapped:(id)sender {
-    //Implement
+    // allocate and initialize an instance of STPCard and populate its properties.
+    self.stripeCard = [[STPCard alloc] init];
+    self.stripeCard.name = self.nameTextField.text;
+    self.stripeCard.number = self.cardNumber.text;
+    self.stripeCard.cvc = self.CVCNumber.text;
+    self.stripeCard.expMonth = [self.selectedMonth integerValue];
+    self.stripeCard.expYear = [self.selectedYear integerValue];
+    
+    // perform some validation on the device
+    if ([self validateCustomerInfo]) {
+        [self performStripeOperation];
+    }
 }
 
-- (void)validateCustomerInfo {
-    //Implement
+- (BOOL)validateCustomerInfo {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please try again"
+                                                    message:@"Please enter all required information"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    
+    // Validate name & email
+    if (self.nameTextField.text.length == 0 || self.emailTextField.text.length == 0) {
+        [alert show];
+        return NO;
+    }
+    
+    // Validate card number, CVC, expMonth, expYear
+    NSError *error = nil;
+    [self.stripeCard validateCardReturningError:&error];
+    
+    // Localize error messages
+    if (error) {
+        alert.message = [error localizedDescription];
+        [alert show];
+        return NO;
+    }
+    return YES;
 }
 
 - (void)performStripeOperation {
-    //Implement
+    // Disable button and avoid the duplicated operations.
+    self.completeButton.enabled = NO;
+    
+    [[STPAPIClient sharedClient] createTokenWithCard:self.stripeCard
+                                          completion:^(STPToken *token, NSError *error) {
+                                              if (error) {
+                                                  [self handleStripeError:error];
+                                              } else {
+                                                  [self postStripeToken:token.tokenId];
+                                              }
+                                          }];
+    
+    
 }
 
 - (void)postStripeToken:(NSString* )token {
@@ -296,5 +345,4 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Pass the selected object to the new view controller.
 }
 */
-
 @end
