@@ -38,7 +38,7 @@
 }
 
 - (BOOL)containsBeverage:(JFBeverage *)beverage {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ID=%@", beverage.beverID];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"beverID=%@", beverage.beverID];
     NSArray *duplicateBeverages = [self.beveragesArray filteredArrayUsingPredicate:predicate];
     return (duplicateBeverages.count > 0) ? YES : NO;
 }

@@ -24,6 +24,10 @@
 		6ED422CB1ACA0EC1007E16FB /* JFCheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED422CA1ACA0EC1007E16FB /* JFCheckoutViewController.m */; };
 		6ED422CF1ACA1023007E16FB /* JFCheckoutBeverageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED422CE1ACA1023007E16FB /* JFCheckoutBeverageCell.m */; };
 		6ED422D21ACA10D1007E16FB /* JFTotalCheckoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED422D11ACA10D1007E16FB /* JFTotalCheckoutCell.m */; };
+		6ED422D51ACA70ED007E16FB /* JFPaymentCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED422D41ACA70ED007E16FB /* JFPaymentCardCell.m */; };
+		6ED422D81ACA725A007E16FB /* JFPaymentDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED422D71ACA725A007E16FB /* JFPaymentDateCell.m */; };
+		6ED422DB1ACA7347007E16FB /* JFPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED422DA1ACA7347007E16FB /* JFPaymentViewController.m */; };
+		6ED422DE1ACA73DF007E16FB /* JFEmailManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED422DD1ACA73DF007E16FB /* JFEmailManager.m */; };
 		849B718FF958F2599F3D81E9 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2E726F6F35BFE843513972 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -70,6 +74,14 @@
 		6ED422CE1ACA1023007E16FB /* JFCheckoutBeverageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCheckoutBeverageCell.m; sourceTree = "<group>"; };
 		6ED422D01ACA10D1007E16FB /* JFTotalCheckoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFTotalCheckoutCell.h; sourceTree = "<group>"; };
 		6ED422D11ACA10D1007E16FB /* JFTotalCheckoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFTotalCheckoutCell.m; sourceTree = "<group>"; };
+		6ED422D31ACA70ED007E16FB /* JFPaymentCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFPaymentCardCell.h; sourceTree = "<group>"; };
+		6ED422D41ACA70ED007E16FB /* JFPaymentCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFPaymentCardCell.m; sourceTree = "<group>"; };
+		6ED422D61ACA725A007E16FB /* JFPaymentDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFPaymentDateCell.h; sourceTree = "<group>"; };
+		6ED422D71ACA725A007E16FB /* JFPaymentDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFPaymentDateCell.m; sourceTree = "<group>"; };
+		6ED422D91ACA7347007E16FB /* JFPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFPaymentViewController.h; sourceTree = "<group>"; };
+		6ED422DA1ACA7347007E16FB /* JFPaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFPaymentViewController.m; sourceTree = "<group>"; };
+		6ED422DC1ACA73DF007E16FB /* JFEmailManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFEmailManager.h; sourceTree = "<group>"; };
+		6ED422DD1ACA73DF007E16FB /* JFEmailManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFEmailManager.m; sourceTree = "<group>"; };
 		775BC32BCC14F8D9AAC17975 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CD2E726F6F35BFE843513972 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADD669195E58C44F9C4EC29 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -166,6 +178,8 @@
 				6E73EA9B1AC8DB6500C1B819 /* JFBeverages.m */,
 				6ED422B81AC927D9007E16FB /* JFCheckoutCart.h */,
 				6ED422B91AC927D9007E16FB /* JFCheckoutCart.m */,
+				6ED422DC1ACA73DF007E16FB /* JFEmailManager.h */,
+				6ED422DD1ACA73DF007E16FB /* JFEmailManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -181,6 +195,8 @@
 				6ED422BE1AC9EBF5007E16FB /* JFBeverageViewController.m */,
 				6ED422C91ACA0EC1007E16FB /* JFCheckoutViewController.h */,
 				6ED422CA1ACA0EC1007E16FB /* JFCheckoutViewController.m */,
+				6ED422D91ACA7347007E16FB /* JFPaymentViewController.h */,
+				6ED422DA1ACA7347007E16FB /* JFPaymentViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -194,6 +210,10 @@
 				6ED422CE1ACA1023007E16FB /* JFCheckoutBeverageCell.m */,
 				6ED422D01ACA10D1007E16FB /* JFTotalCheckoutCell.h */,
 				6ED422D11ACA10D1007E16FB /* JFTotalCheckoutCell.m */,
+				6ED422D31ACA70ED007E16FB /* JFPaymentCardCell.h */,
+				6ED422D41ACA70ED007E16FB /* JFPaymentCardCell.m */,
+				6ED422D61ACA725A007E16FB /* JFPaymentDateCell.h */,
+				6ED422D71ACA725A007E16FB /* JFPaymentDateCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -367,6 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ED422D81ACA725A007E16FB /* JFPaymentDateCell.m in Sources */,
 				6E73EA991AC8D91800C1B819 /* JFBeverage.m in Sources */,
 				6ED422BF1AC9EBF5007E16FB /* JFBeverageViewController.m in Sources */,
 				6ED422D21ACA10D1007E16FB /* JFTotalCheckoutCell.m in Sources */,
@@ -377,7 +398,10 @@
 				6E73EA761AC8D7D000C1B819 /* AppDelegate.m in Sources */,
 				6ED422C21AC9EDA6007E16FB /* JFMenuViewController.m in Sources */,
 				6ED422CF1ACA1023007E16FB /* JFCheckoutBeverageCell.m in Sources */,
+				6ED422DB1ACA7347007E16FB /* JFPaymentViewController.m in Sources */,
 				6E73EA731AC8D7D000C1B819 /* main.m in Sources */,
+				6ED422D51ACA70ED007E16FB /* JFPaymentCardCell.m in Sources */,
+				6ED422DE1ACA73DF007E16FB /* JFEmailManager.m in Sources */,
 				6E73EAA01AC8E89700C1B819 /* JFFeturedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
