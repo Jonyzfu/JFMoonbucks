@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+//@class JFPaymentViewController;
+//
+//
+//@protocol JFPaymentViewControllerDelegate<NSObject>
+//
+//
+//- (void)paymentViewController:(JFPaymentViewController *)controller didFinish:(NSError *)error;
+//
+//@end
+
 @interface JFPaymentViewController : UITableViewController
+
+@property (nonatomic) NSDecimalNumber *totalAmount;
+// @property (weak, nonatomic) id<JFPaymentViewControllerDelegate> delegate;
 
 @end

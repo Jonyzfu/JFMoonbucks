@@ -16,8 +16,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "Stripe.h"
 
-#define STRIPE_TEST_PUBLIC_KEY @"pk_test_iVml2iTuTnAI7sPKjnkmCbU4"
-#define STRIPE_TEST_POST_URL
+#define BackendChargeURLString @"https://moonbucks.herokuapp.com"
 
 @interface JFPaymentViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
@@ -71,6 +70,17 @@
 
 - (IBAction)completeButtonTapped:(id)sender {
     // allocate and initialize an instance of STPCard and populate its properties.
+    if (![Stripe defaultPublishableKey]) {
+        NSError *error = [NSError errorWithDomain:StripeDomain
+                                             code:STPInvalidRequestError
+                                         userInfo:@{
+                                                    NSLocalizedDescriptionKey : @"Please specify a Stripe Publishable Key"
+                                                    }];
+        // [self.delegate paymentViewController:self didFinish:error];
+        NSLog(@"%@", error);
+        return;
+    }
+    
     self.stripeCard = [[STPCard alloc] init];
     self.stripeCard.name = self.nameTextField.text;
     self.stripeCard.number = self.cardNumber.text;
@@ -80,7 +90,23 @@
     
     // perform some validation on the device
     if ([self validateCustomerInfo]) {
-        [self performStripeOperation];
+        self.completeButton.enabled = NO;
+        
+        [[STPAPIClient sharedClient] createTokenWithCard:self.stripeCard
+                                              completion:^(STPToken *token, NSError *error) {
+                                                  if (error) {
+                                                      [self presentError:error];
+                                                  } else {
+                                                      [self createBackendChargeWithToken:token
+                                                                              completion:^(STPBackendChargeResult status, NSError *error) {
+                                                                                  if(error) {
+                                                                                      [self presentError:error];
+                                                                                  } else {
+                                                                                      [self paymentSucceeded];
+                                                                                  }
+                                                                              }];
+                                                  }
+                                              }];
     }
 }
 
@@ -88,7 +114,7 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please try again"
                                                     message:@"Please enter all required information"
                                                    delegate:nil
-                                          cancelButtonTitle:@"OK"
+                                          cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
                                           otherButtonTitles:nil];
     
     // Validate name & email
@@ -117,30 +143,83 @@
     [[STPAPIClient sharedClient] createTokenWithCard:self.stripeCard
                                           completion:^(STPToken *token, NSError *error) {
                                               if (error) {
-                                                  [self handleStripeError:error];
+                                                  [self presentError:error];
                                               } else {
-                                                  [self postStripeToken:token.tokenId];
+                                                  [self createBackendChargeWithToken:token
+                                                                          completion:^(STPBackendChargeResult status, NSError *error) {
+                                                                              if(error) {
+                                                                                  [self presentError:error];
+                                                                              } else {
+                                                                                  [self paymentSucceeded];
+                                                                              }
+                                                                          }];
                                               }
                                           }];
     
+}
+
+- (void)createBackendChargeWithToken:(STPToken *)token completion:(STPTokenSubmissionHandler)completion {
+    JFCheckoutCart *checkoutCart = [JFCheckoutCart sharedInstance];
+    NSNumber *totalAmount = [checkoutCart total];
     
+    NSDictionary *chargeParams = @{ @"stripeToken" : token.tokenId,
+                                    @"amount" : totalAmount
+                                   };
+    if (!BackendChargeURLString) {
+        NSError *error = [NSError errorWithDomain:StripeDomain
+                                             code:STPInvalidRequestError
+                                         userInfo:@{NSLocalizedDescriptionKey : [NSString stringWithFormat:@"Your token is %@\n", token.tokenId]
+                                                    }];
+        completion(STPBackendChargeResultFailure, error);
+        return;
+    }
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:[BackendChargeURLString stringByAppendingString:@"/charge"]
+       parameters:chargeParams
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              completion(STPBackendChargeResultSuccess, nil);
+              //[self paymentSucceeded];
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              completion(STPBackendChargeResultFailure, error);
+              //[self paymentFailed];
+          }];
+    self.completeButton.enabled = YES;
 }
 
-- (void)postStripeToken:(NSString* )token {
-    //Implement
+- (void)presentError:(NSError *) error {
+    
+    if ([error.domain isEqualToString:@"StripeDomain"]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:[error localizedDescription]
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
+                                              otherButtonTitles:nil];
+        [alert show];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Payment Not Successful"
+                                                        message:@"Please try again later."
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+         
+    self.completeButton.enabled = YES;
 }
 
-- (void)handleStripeError:(NSError *) error {
-    //Implement
+- (void)paymentSucceeded {
+    [[[UIAlertView alloc] initWithTitle:@"Success"
+                                message:@"Payment successfully created."
+                               delegate:nil
+                      cancelButtonTitle:nil
+                      otherButtonTitles:@"OK", nil] show];
+    JFCheckoutCart *checkoutCart = [JFCheckoutCart sharedInstance];
+    [checkoutCart clearCart];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (void)chargeDidSucceed {
-    //Implement
-}
-
-- (void)chargeDidNotSuceed {
-    //Implement
-}
 
 #pragma mark - Table view data source
 
