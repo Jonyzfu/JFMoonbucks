@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWTableViewCell.h"
 
-@interface JFMenuViewController : UITableViewController
+@interface JFMenuViewController : UITableViewController<SWTableViewCellDelegate>
 
 @end

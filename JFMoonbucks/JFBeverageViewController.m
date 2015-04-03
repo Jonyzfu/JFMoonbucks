@@ -65,6 +65,7 @@
     if (!self.addToCartButton.selected) {
         [checkoutCart addBeverage:self.beverage];
         self.addToCartButton.selected = YES;
+        [self.navigationController popToRootViewControllerAnimated:YES];
     } else {
         [checkoutCart removeBeverage:self.beverage];
         self.addToCartButton.selected = NO;

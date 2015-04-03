@@ -42,6 +42,56 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - SWTableViewCellDelegate methods
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
+    switch (index) {
+        case 0:
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Bookmark"
+                                                                message:@"Save to favorites successfully"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles: nil];
+            [alertView show];
+            break;
+        }
+        case 1:
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Email Sent"
+                                                                message:@"Just shared this coffee via your mailbox"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles: nil];
+            [alertView show];
+            break;
+        }
+        case 2:
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Facebook Sharing"
+                                                                message:@"Just shared this coffee on Facebook"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles: nil];
+            [alertView show];
+            break;
+        }
+        case 3:
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Twitter Sharing"
+                                                                message:@"Just shared this coffee on Twitter"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles: nil];
+            [alertView show];
+            break;
+        }
+        default:
+            break;
+            
+    }
+}
+
 #pragma mark - UITableViewDataSource methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -50,8 +100,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     JFBeverage *beverage = [JFBeverages sharedInstance].allBeverages[indexPath.row];
+    JFMenuTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"MenuCell" forIndexPath:indexPath];
     
-    JFMenuTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"MenuCell"];
+    // Add utility buttons
+    NSMutableArray *leftUtilityButtons = [NSMutableArray new];
+    
+    [leftUtilityButtons sw_addUtilityButtonWithColor:
+     [UIColor colorWithRed:1.0f green:0.6f blue:0.2f alpha:0.7]
+                                                icon:[UIImage imageNamed:@"like.png"]];
+    [leftUtilityButtons sw_addUtilityButtonWithColor:
+     [UIColor colorWithRed:1.0f green:0.6f blue:0.2f alpha:0.7]
+                                                icon:[UIImage imageNamed:@"message.png"]];
+    [leftUtilityButtons sw_addUtilityButtonWithColor:
+     [UIColor colorWithRed:1.0f green:0.6f blue:0.2f alpha:0.7]
+                                                icon:[UIImage imageNamed:@"facebook.png"]];
+    [leftUtilityButtons sw_addUtilityButtonWithColor:
+     [UIColor colorWithRed:1.0f green:0.6f blue:0.2f alpha:0.7]
+                                                icon:[UIImage imageNamed:@"twitter.png"]];
+    
+    cell.leftUtilityButtons = leftUtilityButtons;
+    cell.delegate = self;
+    
+    // Configure the cell
     [cell.beverImageView setImageWithURL:[NSURL URLWithString:beverage.photoURL]];
     cell.beverName.text = beverage.name;
     cell.beverPrice.text = [NSString stringWithFormat:@"$%@", beverage.price];

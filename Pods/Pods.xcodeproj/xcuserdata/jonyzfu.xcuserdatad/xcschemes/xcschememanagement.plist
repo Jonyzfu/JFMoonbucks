@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-SWTableViewCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Stripe.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1B485267CAC8D32FF67DE517</key>
+		<key>8528374723664C0AF6BF440A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5722ECBEB4EC442A26A5DA19</key>
+		<key>920A38F026E4A4D6135E05EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>77564AC4567FBF68EBD51876</key>
+		<key>A140BC5BF2441054CCC60974</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B251C5BB6BD5E05214D2A651</key>
+		<key>A17807AD3345A9EDEC26582C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A5868EC8CD262C5371A40799</key>
 		<dict>
 			<key>primary</key>
 			<true/>

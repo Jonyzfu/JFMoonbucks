@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWTableViewCell.h"
 
-@interface JFMenuTableViewCell : UITableViewCell
+@interface JFMenuTableViewCell : SWTableViewCell
 
 @property (strong, nonatomic) IBOutlet UIImageView *beverImageView;
 @property (strong, nonatomic) IBOutlet UILabel *beverName;

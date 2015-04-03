@@ -24,15 +24,18 @@ PODS:
   - Stripe (3.1.0):
     - Stripe/Core (= 3.1.0)
   - Stripe/Core (3.1.0)
+  - SWTableViewCell (0.3.7)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
   - MBProgressHUD (~> 0.9.1)
   - Stripe
+  - SWTableViewCell (~> 0.3.7)
 
 SPEC CHECKSUMS:
   AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   Stripe: 8a456332f4db97bd0b8457fc8cce1e1a69ac0cd1
+  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
 
 COCOAPODS: 0.36.1

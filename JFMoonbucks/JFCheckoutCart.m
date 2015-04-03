@@ -62,7 +62,7 @@
     for (JFBeverage *beverage in self.beveragesInCart) {
         total += [beverage.price doubleValue];
     }
-    return @(total);
+    return [NSNumber numberWithDouble:[[NSString stringWithFormat:@"%.2f", total] doubleValue]];
 }
 
 @end
