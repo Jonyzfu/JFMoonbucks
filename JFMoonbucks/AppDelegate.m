@@ -8,8 +8,11 @@
 
 #import "AppDelegate.h"
 #import "Stripe.h"
+#import "JFMoonbucks-Swift.h"
+
 
 @interface AppDelegate ()
+
 
 @end
 
@@ -39,6 +42,8 @@ NSString *const StripePublishableKey = @"pk_test_iVml2iTuTnAI7sPKjnkmCbU4";
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    JFAuthViewController *authViewController = [JFAuthViewController alloc];
+    [authViewController authenticateUser];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

@@ -10,7 +10,7 @@ import UIKit
 
 import LocalAuthentication
 
-class JFAuthViewController: UITabBarController {
+@objc class JFAuthViewController: UITabBarController, UIAlertViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,10 +19,32 @@ class JFAuthViewController: UITabBarController {
 
         // Do any additional setup after loading the view.
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func showPasswordAlert() {
+        var passwordAlert: UIAlertView = UIAlertView(title: "Moonbucks", message: "Please type your password", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "OK")
+        passwordAlert.alertViewStyle = UIAlertViewStyle.SecureTextInput
+        passwordAlert.show()
+    }
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 1 {
+            if !alertView.textFieldAtIndex(0)!.text.isEmpty {
+                if alertView.textFieldAtIndex(0)!.text == "moon" {
+                    
+                } else {
+                    showPasswordAlert()
+                }
+            } else {
+                showPasswordAlert()
+            }
+        }
     }
     
     func authenticateUser() {
@@ -56,7 +78,7 @@ class JFAuthViewController: UITabBarController {
                     default:
                         println("Authentication failed")
                         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                            self.showPasswordAlert()
+                            // self.showPasswordAlert()
                         })
                     }
                     
