@@ -138,7 +138,7 @@
 
 - (void)performStripeOperation {
     // Disable button and avoid the duplicated operations.
-    self.completeButton.enabled = NO;
+    // self.completeButton.hidden = YES;
     
     [[STPAPIClient sharedClient] createTokenWithCard:self.stripeCard
                                           completion:^(STPToken *token, NSError *error) {
@@ -175,7 +175,8 @@
     }
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[BackendChargeURLString stringByAppendingString:@"/charge"]
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    [manager POST:@"https://jfmoon.herokuapp.com/charge"
        parameters:chargeParams
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               completion(STPBackendChargeResultSuccess, nil);

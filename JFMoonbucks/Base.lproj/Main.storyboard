@@ -209,10 +209,10 @@
             </objects>
             <point key="canvasLocation" x="329" y="584"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Auth View Controller-->
         <scene sceneID="x8S-DL-G40">
             <objects>
-                <tabBarController id="KyS-Di-SER" sceneMemberID="viewController">
+                <tabBarController id="KyS-Di-SER" customClass="JFAuthViewController" customModule="JFMoonbucks" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="eSP-gG-ZZy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
