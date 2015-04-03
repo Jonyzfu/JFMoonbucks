@@ -7,20 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Stripe/Stripe.h>
 
-//@class JFPaymentViewController;
-//
-//
-//@protocol JFPaymentViewControllerDelegate<NSObject>
-//
-//
-//- (void)paymentViewController:(JFPaymentViewController *)controller didFinish:(NSError *)error;
-//
-//@end
+@class JFPaymentViewController;
 
-@interface JFPaymentViewController : UITableViewController
+@protocol JFBackendChargingDelegate<NSObject>
+
+- (void)createBackendChargeWithToken:(STPToken *)token completion:(STPTokenSubmissionHandler)completion;
+- (void)paymentViewController:(JFPaymentViewController *)controller didFinish:(NSError *)error;
+
+@end
+
+@interface JFPaymentViewController : UITableViewController<JFBackendChargingDelegate>
 
 @property (nonatomic) NSDecimalNumber *totalAmount;
-// @property (weak, nonatomic) id<JFPaymentViewControllerDelegate> delegate;
 
 @end

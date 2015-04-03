@@ -14,11 +14,11 @@
 #import "JFPaymentDateCell.h"
 
 #import <AFNetworking/AFNetworking.h>
-#import "Stripe.h"
+#import "MBProgressHUD.h"
 
 #define BackendChargeURLString @"https://moonbucks.herokuapp.com"
 
-@interface JFPaymentViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
+@interface JFPaymentViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, JFBackendChargingDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *buttonView;
@@ -76,11 +76,10 @@
                                          userInfo:@{
                                                     NSLocalizedDescriptionKey : @"Please specify a Stripe Publishable Key"
                                                     }];
-        // [self.delegate paymentViewController:self didFinish:error];
-        NSLog(@"%@", error);
+        [self paymentViewController:self didFinish:error];
         return;
     }
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.stripeCard = [[STPCard alloc] init];
     self.stripeCard.name = self.nameTextField.text;
     self.stripeCard.number = self.cardNumber.text;
@@ -90,19 +89,18 @@
     
     // perform some validation on the device
     if ([self validateCustomerInfo]) {
-        self.completeButton.enabled = NO;
-        
         [[STPAPIClient sharedClient] createTokenWithCard:self.stripeCard
                                               completion:^(STPToken *token, NSError *error) {
+                                                  [MBProgressHUD showHUDAddedTo:self.view animated:YES];
                                                   if (error) {
-                                                      [self presentError:error];
+                                                      [self paymentViewController:self didFinish:error];
                                                   } else {
                                                       [self createBackendChargeWithToken:token
                                                                               completion:^(STPBackendChargeResult status, NSError *error) {
                                                                                   if(error) {
-                                                                                      [self presentError:error];
+                                                                                      [self paymentViewController:self didFinish:error];
                                                                                   } else {
-                                                                                      [self paymentSucceeded];
+                                                                                      [self paymentViewController:self didFinish:nil];
                                                                                   }
                                                                               }];
                                                   }
@@ -136,34 +134,15 @@
     return YES;
 }
 
-- (void)performStripeOperation {
-    // Disable button and avoid the duplicated operations.
-    // self.completeButton.hidden = YES;
-    
-    [[STPAPIClient sharedClient] createTokenWithCard:self.stripeCard
-                                          completion:^(STPToken *token, NSError *error) {
-                                              if (error) {
-                                                  [self presentError:error];
-                                              } else {
-                                                  [self createBackendChargeWithToken:token
-                                                                          completion:^(STPBackendChargeResult status, NSError *error) {
-                                                                              if(error) {
-                                                                                  [self presentError:error];
-                                                                              } else {
-                                                                                  [self paymentSucceeded];
-                                                                              }
-                                                                          }];
-                                              }
-                                          }];
-    
-}
+
+#pragma mark - JFBackendChargingDelegate
 
 - (void)createBackendChargeWithToken:(STPToken *)token completion:(STPTokenSubmissionHandler)completion {
     JFCheckoutCart *checkoutCart = [JFCheckoutCart sharedInstance];
-    NSNumber *totalAmount = [checkoutCart total];
+    NSInteger totalAmount = [[checkoutCart total] doubleValue] * 100;
     
     NSDictionary *chargeParams = @{ @"stripeToken" : token.tokenId,
-                                    @"amount" : totalAmount
+                                    @"amount" : [NSString stringWithFormat:@"%li", totalAmount]
                                    };
     if (!BackendChargeURLString) {
         NSError *error = [NSError errorWithDomain:StripeDomain
@@ -174,40 +153,27 @@
         return;
     }
     
+    // This passes the token off to our payment backend, which will then actually complete charging the card using your Stripe account's secret key
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.securityPolicy.allowInvalidCertificates = YES;
-    [manager POST:@"https://jfmoon.herokuapp.com/charge"
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST:[BackendChargeURLString stringByAppendingString:@"/charge"]
        parameters:chargeParams
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               completion(STPBackendChargeResultSuccess, nil);
-              //[self paymentSucceeded];
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               completion(STPBackendChargeResultFailure, error);
-              //[self paymentFailed];
           }];
-    self.completeButton.enabled = YES;
 }
 
 - (void)presentError:(NSError *) error {
-    
-    if ([error.domain isEqualToString:@"StripeDomain"]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:[error localizedDescription]
-                                                       delegate:nil
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                              otherButtonTitles:nil];
-        [alert show];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Payment Not Successful"
-                                                        message:@"Please try again later."
-                                                       delegate:nil
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                              otherButtonTitles:nil];
-        [alert show];
-    }
-         
-    self.completeButton.enabled = YES;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                      message:[error localizedDescription]
+                                                     delegate:nil
+                                            cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
+                                            otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)paymentSucceeded {
@@ -216,9 +182,18 @@
                                delegate:nil
                       cancelButtonTitle:nil
                       otherButtonTitles:@"OK", nil] show];
-    JFCheckoutCart *checkoutCart = [JFCheckoutCart sharedInstance];
-    [checkoutCart clearCart];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)paymentViewController:(JFPaymentViewController *)controller didFinish:(NSError *)error {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    if (error) {
+        [self presentError:error];
+    } else {
+        [self paymentSucceeded];
+        JFCheckoutCart *checkoutCart = [JFCheckoutCart sharedInstance];
+        [checkoutCart clearCart];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 

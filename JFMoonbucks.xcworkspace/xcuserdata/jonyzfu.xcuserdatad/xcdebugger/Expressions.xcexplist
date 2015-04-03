@@ -3,7 +3,16 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[AFHTTPRequestOperationManager HTTPRequestOperationWithRequest:success:failure:]:AFHTTPRequestOperationManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[JFPaymentViewController completeButtonTapped:]:JFPaymentViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "__48-[JFPaymentViewController completeButtonTapped:]_block_invoke:JFPaymentViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[AFHTTPRequestOperationManager HTTPRequestOperationWithHTTPMethod:URLString:parameters:success:failure:]:AFHTTPRequestOperationManager.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
